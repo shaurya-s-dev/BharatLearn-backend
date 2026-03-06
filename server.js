@@ -236,8 +236,7 @@ function validate(schema, data) {
 // ─── Express Setup ────────────────────────────────────────────────────────────
 const app = express();
 app.use(helmet({ contentSecurityPolicy: IS_PROD ? undefined : false }));
-app.use(cors({ origin: FRONTEND_URL, credentials: true, methods: ["GET","POST"], allowedHeaders: ["Content-Type"] }));
-app.use(express.json({ limit: "32kb" }));
+app.use(cors({ origin: "*", methods: ["GET","POST"] }));app.use(express.json({ limit: "32kb" }));
 app.use(express.urlencoded({ extended: false, limit: "32kb" }));
 app.disable("x-powered-by");
 app.use(morgan(IS_PROD ? "combined" : "dev"));
