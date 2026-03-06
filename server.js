@@ -248,6 +248,16 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.get("/", (req, res) => {
+  res.json({
+    message: "BharatLearn backend is running 🚀",
+    service: "AI Dev Coach API"
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 
 // ─── Google OAuth ─────────────────────────────────────────────────────────────
 if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
