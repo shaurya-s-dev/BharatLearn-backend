@@ -236,8 +236,15 @@ function validate(schema, data) {
 // ─── Express Setup ────────────────────────────────────────────────────────────
 const app = express();
 app.use(helmet({ contentSecurityPolicy: IS_PROD ? undefined : false }));
-app.use(cors({ origin: FRONTEND_URL, credentials: true, methods: ["GET","POST"], allowedHeaders: ["Content-Type"] }));
-app.use(express.json({ limit: "32kb" }));
+app.use(cors({
+  origin: [
+    "http://localhost:3001",
+    "https://bharat-learn-frontend.vercel.app",
+    process.env.FRONTEND_URL,
+  ],
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  credentials: true,
+}));
 app.use(express.urlencoded({ extended: false, limit: "32kb" }));
 app.disable("x-powered-by");
 app.use(morgan(IS_PROD ? "combined" : "dev"));
