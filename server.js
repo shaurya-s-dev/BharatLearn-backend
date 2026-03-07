@@ -239,7 +239,8 @@ app.use(helmet({ contentSecurityPolicy: IS_PROD ? undefined : false }));
 app.use(cors({
   origin: [
     "http://localhost:3001",
-    process.env.FRONTEND_URL || "http://localhost:3001",
+    "https://bharat-learn-frontend.vercel.app",
+    process.env.FRONTEND_URL,
   ],
   methods: ["GET","POST","PUT","DELETE","OPTIONS"],
   credentials: true,
